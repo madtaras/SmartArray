@@ -16,8 +16,7 @@ public class BaseArray implements SmartArray {
     }
 
     public String operationDescription() {
-        // TODO: implement this shit
-        return "TODO";
+        return "Base array";
     }
 
     public int size() {
