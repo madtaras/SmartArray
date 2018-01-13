@@ -1,18 +1,19 @@
 package ua.edu.ucu.smartarr;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 // Base array for decorators
-public class BaseArray implements SmartArray {
-    private ArrayList<Integer> nums;
+public class BaseArray<T> implements SmartArray {
+    private T[] nums;
 
-    public BaseArray (Integer[] nums) {
-        this.nums = new ArrayList<>(Arrays.asList(nums)); ;
+    public BaseArray (T[] nums) {
+        this.nums = nums;
     }
 
     public Object[] toArray() {
-        return nums.toArray(new Integer[nums.size()]);
+        return this.nums;
     }
 
     public String operationDescription() {
@@ -20,6 +21,6 @@ public class BaseArray implements SmartArray {
     }
 
     public int size() {
-        return nums.size();
+        return nums.length;
     }
 }
