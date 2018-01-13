@@ -62,7 +62,7 @@ public class SmartArrayApp {
 
         MyPredicate pr2 = new MyPredicate() {
             public boolean test(Object t) {
-                return ((Student) t).getGPA() > 4.0;
+                return ((Student) t).getGPA() >= 4.0;
             }
         };
 
@@ -76,7 +76,7 @@ public class SmartArrayApp {
         MyFunction func = new MyFunction() {
             @Override
             public Object apply(Object t) {
-                return ((Student) t).getSurname();
+                return ((Student) t).getSurname() + " " + ((Student) t).getName();
             }
         };
 

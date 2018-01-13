@@ -18,7 +18,7 @@ public class SortDecorator extends SmartArrayDecorator {
     @Override
     public Object[] toArray() {
         Object[] result = this.smartArray.toArray();
-        Arrays.sort(result);
+        Arrays.sort(result, cmp);
 
         return result;
     }
