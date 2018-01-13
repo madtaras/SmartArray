@@ -54,11 +54,39 @@ public class SmartArrayApp {
 
         SmartArray sa = new BaseArray(students);
 
-        sa = new DistinctDecorator(sa);
+        MyPredicate pr1 = new MyPredicate() {
+            public boolean test(Object t) {
+                return ((Student) t).getYear() == 2;
+            }
+        };
 
-        // Hint: to convert Object[] to String[] - use the following code
-        //Object[] result = studentSmartArray.toArray();
-        //return Arrays.copyOf(result, result.length, String[].class);
-        return null;
+        MyPredicate pr2 = new MyPredicate() {
+            public boolean test(Object t) {
+                return ((Student) t).getGPA() > 4.0;
+            }
+        };
+
+        MyComparator cmp = new MyComparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                return ((Student) o1).getSurname().compareTo(((Student) o2).getSurname());
+            }
+        };
+
+        MyFunction func = new MyFunction() {
+            @Override
+            public Object apply(Object t) {
+                return ((Student) t).getSurname();
+            }
+        };
+
+        sa = new DistinctDecorator(sa);
+        sa = new FilterDecorator(sa, pr1);
+        sa = new FilterDecorator(sa, pr2);
+        sa = new SortDecorator(sa, cmp);
+        sa = new MapDecorator(sa, func);
+
+        Object[] result = sa.toArray();
+        return Arrays.copyOf(result, result.length, String[].class);
     }
 }
